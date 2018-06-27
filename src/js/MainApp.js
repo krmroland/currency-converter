@@ -3,6 +3,10 @@ import SelectField from "./SelectField";
 import Converter from "./Converter";
 
 class MainApp {
+    /**
+     * creates an instance of the MainApp
+     * @return {MainApp}
+     */
     constructor() {
         this.Converter = new Converter();
         this.currencyInputs = {};
@@ -12,7 +16,10 @@ class MainApp {
             .setButton();
         this.updateCurrencies();
     }
-
+    /**
+     * sets the currency inputs
+     * @return {MainApp}
+     */
     setCurrencyInputs() {
         this.currencyInputs["fromCurrency"] = new SelectField("From");
 
@@ -20,6 +27,10 @@ class MainApp {
 
         return this;
     }
+    /**
+     * sets the amount
+     * @return {MainApp}
+     */
     setAmount() {
         this.amount = new InputField("Amount").inputAttribute(
             "placeholder",
@@ -27,12 +38,20 @@ class MainApp {
         );
         return this;
     }
+    /**
+     * sets the result
+     * @return {MainApp}
+     */
     setResult() {
         this.$result = document.createElement("div");
         this.$resultValue = document.createTextNode("No Results");
         this.$result.appendChild(this.$resultValue);
         return this;
     }
+    /**
+     * sets the button
+     * @return {MainApp}
+     */
     setButton() {
         this.$button = document.createElement("button");
         this.$button.className = "button";
@@ -41,6 +60,10 @@ class MainApp {
 
         return this;
     }
+    /**
+     * determines if the form has any missing value
+     * @return {Boolean}
+     */
     hasMissingValue() {
         return (
             Object.values(this.currencyInputs).filter(input =>
@@ -48,6 +71,11 @@ class MainApp {
             ).length || this.validateRequired(this.amount)
         );
     }
+    /**
+     * validates the value of the input
+     * @param  {InputField} $field
+     * @return {Boolean}
+     */
     validateRequired($field) {
         if ($field.value()) {
             //clear any previously set errors
@@ -60,6 +88,10 @@ class MainApp {
 
         return true;
     }
+    /**
+     * determines if the amount is valid
+     * @return { Boolean}
+     */
     amountIsInvalid() {
         const number = +this.amount.value();
 
@@ -74,6 +106,10 @@ class MainApp {
 
         return true;
     }
+    /**
+     * button click event handler for processing the conversion
+     * @param  {Event} event
+     */
     convert(event) {
         event.preventDefault();
 
@@ -96,13 +132,23 @@ class MainApp {
             .catch(error => this.updateResult("something went wrong"))
             .finally(done => this.$button.removeAttribute("disabled", false));
     }
+    /**
+     * updates the results value
+     * @param  {String} value
+     */
     updateResult(value) {
         this.$resultValue.data = value;
     }
-
+    /**
+     * update the currency values
+     */
     updateCurrencies() {
         this.Converter.getCountries().then(this.updateSelectOptions.bind(this));
     }
+    /**
+     * updates the options for all currency inputs
+     * @param  {Object} options.results
+     */
     updateSelectOptions({ results }) {
         const fragment = document.createDocumentFragment("div");
 
@@ -119,6 +165,10 @@ class MainApp {
         );
     }
 
+    /**
+     * iterate through all currency inputs by invoking the callback everytime
+     * @param  {Function} callback
+     */
     iterateCurrencyInputs(callback) {
         Object.values(this.currencyInputs).forEach(curerncyInput => {
             callback(curerncyInput);

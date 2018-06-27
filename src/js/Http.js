@@ -1,7 +1,19 @@
+/**
+ * Covinient wrapper around the fetch api
+ */
 class Http {
+    /**
+     * creates an instance of the Http class
+     * @param  {String} baseUrl The base url
+     */
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
     }
+    /**
+     * makes a get request to the base url given a url
+     * @param  {String} url
+     * @return {Promise}
+     */
     get(url) {
         return this.fetch(url);
     }

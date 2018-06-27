@@ -1,8 +1,19 @@
+/**
+ * Object for building the markkup using the dom api
+ */
 class CurrencyDom {
+    /**
+     * creates an instance of the CurrencyDom
+     * @param  {HtmlElement} $rootNode
+     * @param  {MainApp} app
+     */
     constructor($rootNode, app) {
         this.$rootNode = $rootNode;
         this.app = app;
     }
+    /**
+     * renders the app to the dom
+     */
     render() {
         //create the output
 

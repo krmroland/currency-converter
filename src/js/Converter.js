@@ -1,13 +1,26 @@
 import Http from "./Http";
 
 class Converter {
+    /**
+     * creates an instance of the converter
+     */
     constructor() {
-        currencies: [];
         this.http = new Http("https://free.currencyconverterapi.com/api/v5/");
     }
+    /**
+     * gets all the available countries
+     * @return {Promise}
+     */
     getCountries() {
         return this.http.get("countries");
     }
+    /**
+     * converts a given amount from one currency to another
+     * @param  {Number} amount
+     * @param  {String} from
+     * @param  {String} to
+     * @return {Promise}
+     */
     convert(amount, from, to) {
         const key = from + "_" + to;
         return new Promise((resolve, reject) => {
