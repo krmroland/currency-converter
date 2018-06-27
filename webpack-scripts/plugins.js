@@ -14,7 +14,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const plugins = [
-    new CleanWebpackPlugin(["dist"], { root: path.resolve("./") }),
+    new CleanWebpackPlugin(["dist"], {
+        root: path.resolve(__dirname, "../"),
+        watch: true
+    }),
     new WebpackNotifier({
         alwaysNotify: true,
         title: "ALC",

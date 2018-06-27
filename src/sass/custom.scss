@@ -1,0 +1,97 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+:root {
+    font-size: 1.1rem;
+    weight: 600;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: $black;
+    font-family: "Roboto Slab", serif;
+    border-top: 6px solid $primary;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: block;
+    padding: 0.5em;
+    text-align: center;
+    color: $dark;
+    h3 {
+        font-weight: 900;
+        font-size: 2rem;
+        margin: 0;
+    }
+}
+
+.container {
+    box-shadow: $shadow;
+    flex: 0 0 70%;
+}
+
+main {
+}
+.result {
+    font-size: 1.5rem;
+    background-color: $white;
+    color: $dark;
+    padding: 0.5em;
+    text-align: center;
+    background-color: $white;
+    margin-top: 1.5em;
+    font-weight: 600;
+    border-left: 4px solid $primary;
+    border-right: 4px solid $primary;
+}
+.row {
+    display: flex;
+    padding: 0.5em 0.2em;
+    .field-wrapper {
+        flex: 1;
+        padding: 0.5em;
+        // padding: 0 1em;
+    }
+}
+.amount-error {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+.conversion {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+
+    & .field-input {
+        background-color: #fff;
+        line-height: 1.75;
+        font-size: 1.75rem;
+        font-weight: 300;
+        text-align: center;
+
+        padding: 0.01em;
+
+        border: 2px solid $primary;
+        box-shadow: $shadow;
+        &::placeholder {
+            color: $light;
+            font-size: 1.25rem;
+        }
+    }
+    button {
+        background-color: $primary;
+        color: $white;
+    }
+}
+.field-error {
+    color: $red;
+    padding: 0.5em;
+}

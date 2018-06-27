@@ -3,11 +3,11 @@ const path = require("path");
 // web pack environment
 const mode = process.env.NODE_ENV || "development";
 
+global.inProduction = mode === "production";
+
 const modules = require("./module");
 
 const plugins = require("./plugins");
-
-global.inProduction = mode === "production";
 
 const config = {
     mode,

@@ -1,0 +1,32 @@
+.field-input {
+    display: block;
+    width: 100%;
+    padding: 0.75em;
+    font-size: 1rem;
+    background-color: $white;
+    border: none;
+    &:focus {
+        outline: none;
+    }
+}
+.field-wrapper {
+    margin-bottom: 0.5em;
+}
+
+button {
+    // background-color: $primary;
+    // color: $white;
+    font-size: 1.1em;
+    font-weight: 700;
+    align-items: center;
+    vertical-align: middle;
+    padding: 0.75em 1.25em;
+    border: 1px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+label {
+    font-weight: 700;
+}
