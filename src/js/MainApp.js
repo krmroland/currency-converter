@@ -152,12 +152,16 @@ class MainApp {
     updateSelectOptions({ results }) {
         const fragment = document.createDocumentFragment("div");
 
-        Object.values(results).forEach(country => {
-            const option = document.createElement("option");
-            option.value = country.currencyId;
-            option.text = `${country.name} (${country.currencySymbol})`;
-            fragment.appendChild(option);
-        });
+        Object.values(results).forEach(
+            ({ currencyId, name, currencySymbol }) => {
+                fragment.appendChild(
+                    SelectField.createOption(
+                        `${name} (${currencySymbol})`,
+                        currencyId
+                    )
+                );
+            }
+        );
         //node can't be inserted int two points of the document
         //simultaneously using appendChild,
         this.iterateCurrencyInputs(currency =>

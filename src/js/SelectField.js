@@ -12,7 +12,7 @@ class SelectField extends InputField {
     constructor(label) {
         super(label, "select");
         //add a default  option
-        this.$input.add(this.createOption("--select--"));
+        this.$input.add(SelectField.createOption("--select--"));
     }
     /**
      * Creates an option on the select field
@@ -20,7 +20,7 @@ class SelectField extends InputField {
      * @param  {String|number} value
      * @return {Option}
      */
-    createOption(text, value = "") {
+    static createOption(text, value = "") {
         const option = document.createElement("option");
         option.text = text;
         option.value = value;
