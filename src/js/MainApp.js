@@ -10,7 +10,7 @@ class MainApp {
             .setResult()
             .setAmount()
             .setButton();
-        this.updateCurrencies();
+        // this.updateCurrencies();
     }
 
     setCurrencyInputs() {
