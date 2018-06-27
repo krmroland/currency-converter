@@ -8,11 +8,11 @@ class Converter {
         this.http = new Http("https://free.currencyconverterapi.com/api/v5/");
     }
     /**
-     * gets all the available countries
+     * gets all the available currencies
      * @return {Promise}
      */
-    getCountries() {
-        return this.http.get("countries");
+    getCurrencies() {
+        return this.http.get("currencies");
     }
     /**
      * converts a given amount from one currency to another
