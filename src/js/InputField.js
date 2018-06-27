@@ -61,11 +61,7 @@ class InputField {
             this.hasError = false;
         }
     }
-    withLabel(label) {
-        this.label = label;
-        this.createLabel();
-        return this;
-    }
+
     /**
      * gets the root element of the input field
      * @return {HtmlElement}
