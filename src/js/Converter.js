@@ -18,7 +18,8 @@ class Converter {
                         from,
                         to,
                         amount,
-                        value: result[key] * amount
+                        //add commas
+                        value: Number(result[key] * amount).toLocaleString()
                     })
                 )
                 .catch(error => reject(error));

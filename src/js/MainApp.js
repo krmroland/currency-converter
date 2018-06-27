@@ -10,7 +10,7 @@ class MainApp {
             .setResult()
             .setAmount()
             .setButton();
-        // this.updateCurrencies();
+        this.updateCurrencies();
     }
 
     setCurrencyInputs() {
@@ -45,7 +45,7 @@ class MainApp {
         return (
             Object.values(this.currencyInputs).filter(input =>
                 this.validateRequired(input)
-            ).length && this.validateRequired(this.amount)
+            ).length || this.validateRequired(this.amount)
         );
     }
     validateRequired($field) {
@@ -80,15 +80,24 @@ class MainApp {
         if (this.hasMissingValue() || this.amountIsInvalid()) {
             return;
         }
+
         const { toCurrency, fromCurrency } = this.currencyInputs;
+
+        this.updateResult("...converting");
+        //disable the button
+        this.$button.setAttribute("disabled", true);
+
         this.Converter.convert(
             this.amount.value(),
             fromCurrency.value(),
             toCurrency.value()
-        ).then(result => this.updateResult(result));
+        )
+            .then(({ value, to }) => this.updateResult(`${to} ${value}`))
+            .catch(error => this.updateResult("something went wrong"))
+            .finally(done => this.$button.removeAttribute("disabled", false));
     }
-    updateResult({ value, to }) {
-        this.$resultValue.data = `${to} ${value}`;
+    updateResult(value) {
+        this.$resultValue.data = value;
     }
 
     updateCurrencies() {
