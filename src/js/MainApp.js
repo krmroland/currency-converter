@@ -113,7 +113,11 @@ class MainApp {
     convert(event) {
         event.preventDefault();
 
-        if (this.hasMissingValue() || this.amountIsInvalid()) {
+        if (
+            this.hasMissingValue() ||
+            this.amountIsInvalid() ||
+            this.currenciesAreTheSame()
+        ) {
             return;
         }
 
@@ -129,8 +133,21 @@ class MainApp {
             toCurrency.value()
         )
             .then(({ value, to }) => this.updateResult(`${to} ${value}`))
-            .catch(error => this.updateResult("something went wrong"))
+            .catchif(error => this.updateResult("something went wrong"))
             .finally(done => this.$button.removeAttribute("disabled", false));
+    }
+    /**
+     * ensure that the currencies are not the same
+     * @return {Boolean}
+     */
+    currenciesAreTheSame() {
+        const { toCurrency, fromCurrency } = this.currencyInputs;
+        //ensure that we have different currencies
+        if (toCurrency.value() === fromCurrency.value()) {
+            this.amount.setError("Please select distinct currencies");
+            return true;
+        }
+        return false;
     }
     /**
      * updates the results value
@@ -143,7 +160,9 @@ class MainApp {
      * update the currency values
      */
     updateCurrencies() {
-        this.Converter.getCountries().then(this.updateSelectOptions.bind(this));
+        this.Converter.getCurrencies().then(
+            this.updateSelectOptions.bind(this)
+        );
     }
     /**
      * updates the options for all currency inputs
@@ -153,11 +172,11 @@ class MainApp {
         const fragment = document.createDocumentFragment("div");
 
         Object.values(results).forEach(
-            ({ currencyId, name, currencySymbol }) => {
+            ({ id, currencyName, currencySymbol }) => {
                 fragment.appendChild(
                     SelectField.createOption(
-                        `${name} (${currencySymbol})`,
-                        currencyId
+                        `${currencyName} (${currencySymbol})`,
+                        id
                     )
                 );
             }
