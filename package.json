@@ -4,10 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "watch":
-            "cross-env NODE_ENV=development webpack --watch --watch-poll  --hide-modules --progress --config=./webpack-scripts/index.js",
-        "build":
-            "cross-env NODE_ENV=production webpack --hide-modules --progress --config=./webpack-scripts/index.js"
+        "watch": "cross-env NODE_ENV=development webpack --watch --watch-poll  --hide-modules --progress --config=./webpack-scripts/index.js",
+        "build": "cross-env NODE_ENV=production webpack --hide-modules --progress --config=./webpack-scripts/index.js"
     },
     "keywords": [],
     "author": "",
@@ -16,6 +14,7 @@
         "autoprefixer": "^8.6.3",
         "browser-sync-webpack-plugin": "^2.2.2",
         "clean-webpack-plugin": "^0.1.19",
+        "copy-webpack-plugin": "^4.5.2",
         "cross-env": "^5.2.0",
         "css-loader": "^0.28.11",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",

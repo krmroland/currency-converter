@@ -13,6 +13,11 @@ const WebpackNotifier = require("webpack-notifier");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+
+//copy files from the public directory to dist folder
+
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 const plugins = [
     new CleanWebpackPlugin(["dist"], {
         root: path.resolve(__dirname, "../")
@@ -32,7 +37,13 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: path.resolve("public/index.html"),
         excludeChunks: ["serviceWorker"]
-    })
+    }),
+    new CopyWebpackPlugin(
+        [{ from: path.resolve("./public"), to: path.resolve("./dist") }],
+        {
+            ignore: "index.html"
+        }
+    )
 ];
 
 module.exports = plugins;

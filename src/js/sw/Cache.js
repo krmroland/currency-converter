@@ -6,7 +6,8 @@ const urlsToCache = [
     "app.js",
     "app.css",
     "https://fonts.googleapis.com/css?family=Roboto+Slab",
-    "https://free.currencyconverterapi.com/api/v5/currencies"
+    "https://free.currencyconverterapi.com/api/v5/currencies",
+    "/favicon.png"
 ];
 
 export function createCache(event) {
