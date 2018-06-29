@@ -44,7 +44,7 @@ class MainApp {
      */
     setResult() {
         this.$result = document.createElement("div");
-        this.$resultValue = document.createTextNode("No Results");
+        this.$resultValue = document.createTextNode("?");
         this.$result.appendChild(this.$resultValue);
         return this;
     }
@@ -113,6 +113,9 @@ class MainApp {
     convert(event) {
         event.preventDefault();
 
+        //reset whatever result we previous had
+        this.updateResult("?");
+
         if (
             this.hasMissingValue() ||
             this.amountIsInvalid() ||
@@ -127,13 +130,13 @@ class MainApp {
         //disable the button
         this.$button.setAttribute("disabled", true);
 
-        this.Converter.convert(
-            this.amount.value(),
-            fromCurrency.value(),
-            toCurrency.value()
-        )
-            .then(({ value, to }) => this.updateResult(`${to} ${value}`))
-            .catchif(error => this.updateResult("something went wrong"))
+        this.Converter.convert(fromCurrency.value(), toCurrency.value())
+            .then(({ rate, to }) => {
+                const amount = this.amount.value();
+                const value = Number(rate * amount).toLocaleString();
+                this.updateResult(`${to} ${value}`);
+            })
+            .catch(error => this.updateResult(error))
             .finally(done => this.$button.removeAttribute("disabled", false));
     }
     /**

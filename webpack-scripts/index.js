@@ -15,14 +15,15 @@ const config = {
     plugins,
     //entry points
     entry: {
-        app: path.resolve("src/js/app.js")
+        app: path.resolve("src/js/app.js"),
+        serviceWorker: path.resolve("src/js/sw/serviceWorker.js")
     },
 
     //destination for trans-piled files
     output: {
         path: path.resolve("dist"),
         // hash the file name
-        filename: "js/[name].[hash:8].js"
+        filename: "[name].js"
     },
 
     performance: {

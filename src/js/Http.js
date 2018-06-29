@@ -22,10 +22,13 @@ class Http {
         return new Promise((resolve, reject) => {
             return fetch(url, { method })
                 .then(response => {
-                    return response
-                        .json()
-                        .then(data => resolve(data))
-                        .catch(error => reject(url));
+                    if (response && response.status === 200) {
+                        return response
+                            .json()
+                            .then(data => resolve(data))
+                            .catch(error => reject(error));
+                    }
+                    return Promise.reject("Failed to fetch updates");
                 })
                 .catch(error => reject(error));
         });

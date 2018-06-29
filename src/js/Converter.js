@@ -16,12 +16,11 @@ class Converter {
     }
     /**
      * converts a given amount from one currency to another
-     * @param  {Number} amount
      * @param  {String} from
      * @param  {String} to
      * @return {Promise}
      */
-    convert(amount, from, to) {
+    convert(from, to) {
         const key = from + "_" + to;
         return new Promise((resolve, reject) => {
             return this.http
@@ -30,9 +29,7 @@ class Converter {
                     resolve({
                         from,
                         to,
-                        amount,
-                        //add commas
-                        value: Number(result[key] * amount).toLocaleString()
+                        rate: result[key]
                     })
                 )
                 .catch(error => reject(error));

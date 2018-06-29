@@ -15,8 +15,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const plugins = [
     new CleanWebpackPlugin(["dist"], {
-        root: path.resolve(__dirname, "../"),
-        watch: true
+        root: path.resolve(__dirname, "../")
     }),
     new WebpackNotifier({
         alwaysNotify: true,
@@ -27,11 +26,12 @@ const plugins = [
     new FriendlyErrors(),
     //extract css out of the js modules
     new ExtractTextPlugin({
-        filename: "css/[name].[hash:8].css"
+        filename: "[name].css"
     }),
     //we would want the  scripts and links automatically generated with hashes
     new HtmlWebpackPlugin({
-        template: path.resolve("public/index.html")
+        template: path.resolve("public/index.html"),
+        excludeChunks: ["serviceWorker"]
     })
 ];
 

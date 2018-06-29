@@ -13,3 +13,4 @@ new CurrencyDom(document.getElementById("app"), app).render();
 //register service worker
 
 registerServiceWorker();
+
