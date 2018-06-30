@@ -1,13 +1,12 @@
-export const CACHE_NAME = "CURRENCY-CONVERTER-STATIC-V1";
+export const CACHE_NAME = "CURRENCY-CONVERTER-STATIC-V2";
 
 const urlsToCache = [
-    "/",
-    "/index.html",
+    "index.html",
     "app.js",
     "app.css",
+    "favicon.png",
     "https://fonts.googleapis.com/css?family=Roboto+Slab",
-    "https://free.currencyconverterapi.com/api/v5/currencies",
-    "/favicon.png"
+    "https://free.currencyconverterapi.com/api/v5/currencies"
 ];
 
 export function createCache(event) {
