@@ -88,14 +88,14 @@ main {
         }
     }
     button {
-        background-color: $primary;
+        background-color: $primary_dark;
         color: $white;
         &:disabled {
             cursor: not-allowed;
             opacity: 0.6;
         }
         &:focus {
-            outline-color: $primary-dark;
+            outline-color: $primary;
         }
     }
 }

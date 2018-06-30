@@ -30,6 +30,7 @@ class InputField {
      */
     createInput() {
         this.$input = document.createElement(this.type);
+        this.$input.setAttribute("aria-label", this.label);
         this.$input.className = "field-input";
     }
     /**
