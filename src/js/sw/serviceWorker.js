@@ -10,8 +10,16 @@ self.addEventListener("active", function(event) {
 self.addEventListener("fetch", function(event) {
     const requestUrl = new URL(event.request.url);
 
+    const { pathname } = requestUrl;
+    //we are sure the index page exists in the cache
+    // so we return immediately
+    if (pathname === "/" || pathname === "index.html") {
+        event.respondWith(caches.match("index.html"));
+        return;
+    }
+
     //we will need to trap all conversion requests
-    if (requestUrl.pathname.includes("convert")) {
+    if (pathname.includes("convert")) {
         event.respondWith(
             caches.match(event.request).then(response => {
                 //A request is a stream and can only be consumed once.
