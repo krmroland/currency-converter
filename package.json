@@ -4,8 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "watch": "cross-env NODE_ENV=development webpack --watch --watch-poll  --hide-modules --progress --config=./webpack-scripts/index.js",
-        "build": "cross-env NODE_ENV=production webpack --hide-modules --progress --config=./webpack-scripts/index.js"
+        "watch":
+            "cross-env NODE_ENV=development webpack --watch --watch-poll  --hide-modules --progress --config=./webpack-scripts/index.js",
+        "build":
+            "cross-env NODE_ENV=production webpack --hide-modules --progress --config=./webpack-scripts/index.js",
+        "deploy": "npm run build && gh-pages -d dist"
     },
     "keywords": [],
     "author": "",
@@ -19,6 +22,7 @@
         "css-loader": "^0.28.11",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
+        "gh-pages": "^1.2.0",
         "node-sass": "^4.9.0",
         "postcss-loader": "^2.1.5",
         "sass-loader": "^7.0.3",
