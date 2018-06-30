@@ -10,6 +10,7 @@ class MainApp {
     constructor() {
         this.Converter = new Converter();
         this.currencyInputs = {};
+        this.currencies = {};
         this.setCurrencyInputs()
             .setResult()
             .setAmount()
@@ -134,10 +135,25 @@ class MainApp {
             .then(({ rate, to }) => {
                 const amount = this.amount.value();
                 const value = Number(rate * amount).toLocaleString();
-                this.updateResult(`${to} ${value}`);
+
+                this.updateResult(`${this.currencySymbol(to)} ${value}`);
             })
             .catch(error => this.updateResult(error))
             .finally(done => this.$button.removeAttribute("disabled", false));
+    }
+    /**
+     * gets the currency symbol given an id
+     * @param  {String} id
+     * @return {String}
+     */
+    currencySymbol(id) {
+        const currency = this.currencies[id];
+        //fall back to id
+        if (!currency) {
+            return id;
+        }
+        //fall back to the currency name if the symbol is not given
+        return currency.currencySymbol || currency.name;
     }
     /**
      * ensure that the currencies are not the same
@@ -172,6 +188,7 @@ class MainApp {
      * @param  {Object} options.results
      */
     updateSelectOptions({ results }) {
+        this.currencies = results;
         const fragment = document.createDocumentFragment("div");
 
         Object.values(results).forEach(
