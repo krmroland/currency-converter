@@ -1,0 +1,15 @@
+{
+  "short_name": "Converter",
+  "name": "A simple app for converting currencies",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16 512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#f75453",
+  "background_color": "#ffffff"
+}
